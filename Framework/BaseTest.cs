@@ -21,11 +21,8 @@ namespace CS_TAF_v1.Framework.Core
         public NameValueCollection browser = (NameValueCollection)ConfigurationManager.GetSection("browser");
         public String dateTime = DateTime.Now.ToString("yyyy-MM-dd HH-mm-tt");
         public String extentFolder = @"./../ExtentReports/";
-        public ExtentHtmlReporter htmlReporter;
-        public ExtentReports extent;
+        public ExtentReports extent = new ExtentReports();
         public ExtentTest test;
-        public String reportPath;
-        public string reportFile;
         public HttpClientHandler httpClientHandler = new HttpClientHandler();
 
         private IWebDriver GetChromeDriver()
@@ -45,16 +42,24 @@ namespace CS_TAF_v1.Framework.Core
         private String ReportTitle()
         { return dateTime + " - Automation Report - Chrome"; }
 
+        public MediaEntityModelProvider GetScreenshot()
+        {
+            string screenshotName = TestContext.CurrentContext.Test.Name + ".png";
+            string filePath = mainReportFolder + "\\" + ReportTitle() + "\\Screenshots\\";           
+            Screenshot file = ((ITakesScreenshot)driver).GetScreenshot();
+            file.SaveAsFile(filePath + screenshotName, ScreenshotImageFormat.Png);
+            var screenshot = MediaEntityBuilder.CreateScreenCaptureFromPath(filePath + screenshotName).Build();
+            return screenshot;
+        }
+
         [OneTimeSetUp]
         public void RunBeforeSuite()
         {
             Directory.CreateDirectory(mainReportFolder);
             String reportFolder = mainReportFolder + "\\" + ReportTitle();
-            Directory.CreateDirectory(reportFolder);
             Directory.CreateDirectory(reportFolder + "\\Screenshots");
-            reportFile = reportFolder + "\\" + ReportTitle() + ".html";
-            extent = new ExtentReports();
-            htmlReporter = new ExtentHtmlReporter(reportFile);
+            String reportFile = reportFolder + "\\" + ReportTitle() + ".html";
+            ExtentHtmlReporter htmlReporter = new ExtentHtmlReporter(reportFile);
             extent.AttachReporter(htmlReporter);
             extent.AddTestRunnerLogs(reportFile);
         }
@@ -75,13 +80,9 @@ namespace CS_TAF_v1.Framework.Core
             switch (TestContext.CurrentContext.Result.Outcome.Status)
             {
                 case TestStatus.Failed:
-                    Screenshot file = ((ITakesScreenshot)driver).GetScreenshot();
-                    file.SaveAsFile(mainReportFolder + "\\" + ReportTitle() + "\\Screenshots\\"
-                        + TestContext.CurrentContext.Test.Name + ".png", ScreenshotImageFormat.Png);
-                    test.Log(Status.Fail, description, MediaEntityBuilder.CreateScreenCaptureFromPath
-                        ("\\Screenshots\\" + TestContext.CurrentContext.Test.Name + ".png").Build());
                     test.Log(Status.Fail, TestContext.CurrentContext.Result.StackTrace);
                     test.Log(Status.Fail, TestContext.CurrentContext.Result.Message);
+                    test.Log(Status.Fail, description, GetScreenshot());
                     break;
                 case TestStatus.Passed:
                     test.Log(Status.Pass, description);
@@ -91,7 +92,7 @@ namespace CS_TAF_v1.Framework.Core
                     break;
             }
 
-            try { extent.Flush(); } catch { }
+            extent.Flush();
             //This error appears if I quit the webDriver here:
             //System.ObjectDisposedException : Cannot access a disposed object.
             //Object name: 'System.Net.Http.HttpClient'.
@@ -101,7 +102,7 @@ namespace CS_TAF_v1.Framework.Core
         [OneTimeTearDown]
         public void OneTimeTearDown()
         {
-            try { extent.Flush(); } catch { }
+            extent.Flush();
             if (driver != null) { driver.Quit(); }
         }
     }
