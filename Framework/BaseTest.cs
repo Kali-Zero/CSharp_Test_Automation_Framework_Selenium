@@ -10,6 +10,8 @@ using System.IO;
 using TestContext = NUnit.Framework.TestContext;
 using NUnit.Framework.Interfaces;
 using System.Drawing;
+using OpenQA.Selenium.Edge;
+using OpenQA.Selenium.Firefox;
 
 namespace CSharp_Selenium_Test_Automation.Framework.Core
 {
@@ -28,14 +30,36 @@ namespace CSharp_Selenium_Test_Automation.Framework.Core
         {
             if (driver == null)
             {
-                //Run Chrome headless
                 ChromeOptions options = new ChromeOptions();
-                options.AddArguments("--headless");
+                if (browser["isHeadless"] == "True") { options.AddArguments("--headless"); }
                 driver = new ChromeDriver(options);
                 return driver;
             }
-            else
-            { return driver; }
+            else { return driver; }
+        }
+
+        private IWebDriver GetFirefoxDriver()
+        {
+            if (driver == null)
+            {
+                FirefoxOptions options = new FirefoxOptions();
+                if (browser["isHeadless"] == "True") { options.AddArguments("--headless"); }
+                driver = new FirefoxDriver(options);
+                return driver;
+            }
+            else { return driver; }
+        }
+
+        private IWebDriver GetEdgeDriver()
+        {
+            if (driver == null)
+            {
+                EdgeOptions options = new EdgeOptions();
+                if (browser["isHeadless"] == "True") { options.AddArguments("--headless"); }
+                driver = new EdgeDriver(options);
+                return driver;
+            }
+            else { return driver; }
         }
 
         private String ReportTitle()
@@ -60,6 +84,7 @@ namespace CSharp_Selenium_Test_Automation.Framework.Core
             Directory.CreateDirectory(reportFolder + "\\Screenshots");
             String reportFile = reportFolder + "\\" + ReportTitle() + ".html";
             ExtentHtmlReporter htmlReporter = new ExtentHtmlReporter(reportFile);
+            htmlReporter.LoadConfig(Environment.CurrentDirectory + "\\Framework\\extent-config.xml");
             extent.AttachReporter(htmlReporter);
             extent.AddTestRunnerLogs(reportFile);
         }
@@ -68,7 +93,9 @@ namespace CSharp_Selenium_Test_Automation.Framework.Core
         public void RunBeforeEachMethod()
         {
             test = extent.CreateTest(TestContext.CurrentContext.Test.Name);
-            GetChromeDriver();
+            if (browser["webBrowser"] == "Chrome") { GetChromeDriver(); }
+            else if (browser["webBrowser"] == "Firefox") { GetFirefoxDriver(); }
+            else if (browser["webBrowser"] == "MSEdge") { GetEdgeDriver(); }
             driver.Manage().Cookies.DeleteAllCookies();
             driver.Manage().Window.Size = new Size(1920, 1080);
             driver.Navigate().GoToUrl(googleSite["base_url"].ToString());
