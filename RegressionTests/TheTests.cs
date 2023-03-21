@@ -1,10 +1,10 @@
-﻿using CS_TAF_v1.Framework.Core;
+﻿using CSharp_Selenium_Test_Automation.Framework.Core;
 using AventStack.ExtentReports;
 using NUnit.Framework;
 using Assert = Microsoft.VisualStudio.TestTools.UnitTesting.Assert;
-using CS_TAF_v1.PageObjects;
+using CSharp_Selenium_Test_Automation.PageObjects;
 
-namespace CS_TAF_v1
+namespace CSharp_Selenium_Test_Automation
 {
     [TestFixture]
     public class TheTests : BaseTest

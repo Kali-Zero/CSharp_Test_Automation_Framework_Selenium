@@ -9,9 +9,9 @@ using NUnit.Framework;
 using System.IO;
 using TestContext = NUnit.Framework.TestContext;
 using NUnit.Framework.Interfaces;
-using System.Net.Http;
+using System.Drawing;
 
-namespace CS_TAF_v1.Framework.Core
+namespace CSharp_Selenium_Test_Automation.Framework.Core
 {
     public class BaseTest
     {
@@ -23,7 +23,6 @@ namespace CS_TAF_v1.Framework.Core
         public String extentFolder = @"./../ExtentReports/";
         public ExtentReports extent = new ExtentReports();
         public ExtentTest test;
-        public HttpClientHandler httpClientHandler = new HttpClientHandler();
 
         private IWebDriver GetChromeDriver()
         {
@@ -44,13 +43,14 @@ namespace CS_TAF_v1.Framework.Core
 
         public MediaEntityModelProvider GetScreenshot()
         {
+            string filePath = mainReportFolder + "\\" + ReportTitle() + "\\Screenshots\\";
             string screenshotName = TestContext.CurrentContext.Test.Name + ".png";
-            string filePath = mainReportFolder + "\\" + ReportTitle() + "\\Screenshots\\";           
             Screenshot file = ((ITakesScreenshot)driver).GetScreenshot();
             file.SaveAsFile(filePath + screenshotName, ScreenshotImageFormat.Png);
-            var screenshot = MediaEntityBuilder.CreateScreenCaptureFromPath(filePath + screenshotName).Build();
+            var screenshot = MediaEntityBuilder.CreateScreenCaptureFromPath("Screenshots/" + screenshotName).Build();
             return screenshot;
         }
+
 
         [OneTimeSetUp]
         public void RunBeforeSuite()
@@ -69,6 +69,8 @@ namespace CS_TAF_v1.Framework.Core
         {
             test = extent.CreateTest(TestContext.CurrentContext.Test.Name);
             GetChromeDriver();
+            driver.Manage().Cookies.DeleteAllCookies();
+            driver.Manage().Window.Size = new Size(1920, 1080);
             driver.Navigate().GoToUrl(googleSite["base_url"].ToString());
         }
 
@@ -96,14 +98,14 @@ namespace CS_TAF_v1.Framework.Core
             //This error appears if I quit the webDriver here:
             //System.ObjectDisposedException : Cannot access a disposed object.
             //Object name: 'System.Net.Http.HttpClient'.
-            //if (driver != null) { driver.Quit(); }
+            //driver?.Quit();
         }
 
         [OneTimeTearDown]
         public void OneTimeTearDown()
         {
             extent.Flush();
-            if (driver != null) { driver.Quit(); }
+            driver?.Quit();
         }
     }
 }

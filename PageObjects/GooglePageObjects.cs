@@ -1,6 +1,6 @@
 ﻿using OpenQA.Selenium;
 
-namespace CS_TAF_v1.PageObjects
+namespace CSharp_Selenium_Test_Automation.PageObjects
 {
     public class GooglePageObjects
     {
