@@ -1,13 +1,13 @@
-﻿using CSharp_Selenium_Test_Automation.Framework.Core;
-using AventStack.ExtentReports;
+﻿using AventStack.ExtentReports;
 using NUnit.Framework;
 using Assert = Microsoft.VisualStudio.TestTools.UnitTesting.Assert;
 using CSharp_Selenium_Test_Automation.PageObjects;
+using CS_TestAutomation.Framework.Core;
 
 namespace CSharp_Selenium_Test_Automation
 {
     [TestFixture]
-    public class TheTests : BaseTest
+    public class TheGoogleTests : BaseTest
     {
         public GooglePageObjects googlePageObjects = new GooglePageObjects();
 
@@ -31,7 +31,7 @@ namespace CSharp_Selenium_Test_Automation
         [Description("02. This test should fail.")]
         public void FailTest1()
         {
-            Assert.IsTrue(!driver.Url.ToString().Contains("shenannigans"), "Test 2a Message.");
+            Assert.IsFalse(driver.Url.ToString().Contains("shenannigans"), "Test 2a Message.");
             test.Log(Status.Pass, "Test 2a Log Message.");
             Assert.IsTrue(driver.Url.ToString().Contains("shenannigans"), "Test 2b Message.");
             test.Log(Status.Pass, "Test 2b Log Message.");

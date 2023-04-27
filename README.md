@@ -13,3 +13,6 @@ After 3, it starts requiring a LOT of dependancy libraries.
 The report will be output to the ExtentReport folder in the main project, NOT the bin folder.
 I didn't want results to be overridden after each run.
 Will periodically save them elsewhere until I figure out a better option.
+
+Current Issues:
+Duplicate Screenshots appear in the report if a test fails

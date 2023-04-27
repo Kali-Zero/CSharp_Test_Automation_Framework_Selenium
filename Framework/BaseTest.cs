@@ -1,138 +1,139 @@
-﻿using OpenQA.Selenium;
-using OpenQA.Selenium.Chrome;
+﻿using System;
+using System.IO;
+using System.Drawing;
 using System.Configuration;
 using System.Collections.Specialized;
-using System;
-using AventStack.ExtentReports.Reporter;
 using AventStack.ExtentReports;
+using AventStack.ExtentReports.Reporter;
+using Status = AventStack.ExtentReports.Status;
 using NUnit.Framework;
-using System.IO;
-using TestContext = NUnit.Framework.TestContext;
 using NUnit.Framework.Interfaces;
-using System.Drawing;
+using TestContext = NUnit.Framework.TestContext;
+using OpenQA.Selenium;
 using OpenQA.Selenium.Edge;
+using OpenQA.Selenium.Chrome;
 using OpenQA.Selenium.Firefox;
 
-namespace CSharp_Selenium_Test_Automation.Framework.Core
+namespace CS_TestAutomation.Framework.Core
 {
     public class BaseTest
     {
         public IWebDriver driver;
-        public string mainReportFolder = Path.Combine(Directory.GetParent(Directory.GetParent(Environment.CurrentDirectory).FullName).FullName, "ExtentReports");
+        public static String mainReportFolder = Path.Combine(Directory.GetParent(Directory.GetParent(
+            Environment.CurrentDirectory).FullName).FullName, "ExtentReports");
+        public String reportFolder = "";
         public NameValueCollection googleSite = (NameValueCollection)ConfigurationManager.GetSection("googleSite");
         public NameValueCollection browser = (NameValueCollection)ConfigurationManager.GetSection("browser");
-        public String dateTime = DateTime.Now.ToString("yyyy-MM-dd HH-mm-tt");
-        public String extentFolder = @"./../ExtentReports/";
-        public ExtentReports extent = new ExtentReports();
-        public ExtentTest test;
+        public static String dateTime = DateTime.Now.ToString("yyyy-MM-dd HH-mm-tt");
+        public static String extentFolder = @"./../ExtentReports/";
+        public static ExtentReports extent = new ExtentReports();
+        public static ExtentTest test;
+        public static bool OneRunFlag = true;
 
-        private IWebDriver GetChromeDriver()
+        public IWebDriver GetWebDriver()
         {
-            if (driver == null)
+            if (browser["webBrowser"] == "Chrome")
             {
                 ChromeOptions options = new ChromeOptions();
-                if (browser["isHeadless"] == "True") { options.AddArguments("--headless"); }
+                options.AddUserProfilePreference("download.default_directory", reportFolder + "\\TestDownloadFolder");
+                if (browser["isHeadless"] == "True") { options.AddArguments("--headless=new", "--no-sandbox"); }
                 driver = new ChromeDriver(options);
-                return driver;
             }
-            else { return driver; }
-        }
-
-        private IWebDriver GetFirefoxDriver()
-        {
-            if (driver == null)
+            else if (browser["webBrowser"] == "Firefox")
             {
                 FirefoxOptions options = new FirefoxOptions();
                 if (browser["isHeadless"] == "True") { options.AddArguments("--headless"); }
                 driver = new FirefoxDriver(options);
-                return driver;
             }
-            else { return driver; }
-        }
-
-        private IWebDriver GetEdgeDriver()
-        {
-            if (driver == null)
+            else if (browser["webBrowser"] == "MSEdge")
             {
                 EdgeOptions options = new EdgeOptions();
                 if (browser["isHeadless"] == "True") { options.AddArguments("--headless"); }
                 driver = new EdgeDriver(options);
-                return driver;
             }
-            else { return driver; }
+            return driver;
         }
 
         private String ReportTitle()
-        { return dateTime + " - Automation Report - Chrome"; }
+        { return dateTime + " - " + TestEnvironment() + " - Automation Report - " + browser["webBrowser"]; }
 
-        public MediaEntityModelProvider GetScreenshot()
+        private String TestEnvironment()
         {
-            string filePath = mainReportFolder + "\\" + ReportTitle() + "\\Screenshots\\";
-            string screenshotName = TestContext.CurrentContext.Test.Name + ".png";
-            Screenshot file = ((ITakesScreenshot)driver).GetScreenshot();
-            file.SaveAsFile(filePath + screenshotName, ScreenshotImageFormat.Png);
-            var screenshot = MediaEntityBuilder.CreateScreenCaptureFromPath("Screenshots/" + screenshotName).Build();
-            return screenshot;
+            String env = "Development";
+            //if (     env["base_url"].Contains(env["dev"]))     { env = "Development"; }
+            //else if (env["base_url"].Contains(env["staging"])) { env = "Staging"; }
+            //else if (env["base_url"].Contains(env["prod"]))    { env = "Production"; }
+            return env;
         }
 
+        public MediaEntityModelProvider GetErrorScreenshot()
+        {
+            string screenshotName = TestContext.CurrentContext.Test.Name + ".png";
+            string filePath = mainReportFolder + "\\" + ReportTitle() + "\\Screenshots\\";
+            Screenshot file = ((ITakesScreenshot)driver).GetScreenshot();
+            file.SaveAsFile(filePath + screenshotName, ScreenshotImageFormat.Png);
+            var screenshot = MediaEntityBuilder.CreateScreenCaptureFromPath("Screenshots\\" + screenshotName).Build();
+            return screenshot;
+        }
 
         [OneTimeSetUp]
         public void RunBeforeSuite()
         {
-            Directory.CreateDirectory(mainReportFolder);
-            String reportFolder = mainReportFolder + "\\" + ReportTitle();
-            Directory.CreateDirectory(reportFolder + "\\Screenshots");
-            String reportFile = reportFolder + "\\" + ReportTitle() + ".html";
-            ExtentHtmlReporter htmlReporter = new ExtentHtmlReporter(reportFile);
-            htmlReporter.LoadConfig(Environment.CurrentDirectory + "\\Framework\\extent-config.xml");
-            extent.AttachReporter(htmlReporter);
-            extent.AddTestRunnerLogs(reportFile);
+            if (OneRunFlag)
+            {   //This method is SUPPOSED to be run ONCE only. (This is my hacky way around NUnits stupid framework.)
+                Directory.CreateDirectory(mainReportFolder);
+                reportFolder = mainReportFolder + "\\" + ReportTitle();
+                Directory.CreateDirectory(reportFolder);
+                Directory.CreateDirectory(reportFolder + "\\Screenshots");
+                String reportFile = reportFolder + "\\" + ReportTitle() + ".html";
+                ExtentHtmlReporter htmlReporter = new ExtentHtmlReporter(reportFile);
+                htmlReporter.LoadConfig(Environment.CurrentDirectory + "\\Framework\\extent-config.xml");
+                extent.AttachReporter(htmlReporter);
+                extent.AddTestRunnerLogs(reportFile);
+                OneRunFlag = false;
+            }
         }
 
         [SetUp]
-        public void RunBeforeEachMethod()
+        public void RunBeforeEachTest()
         {
             test = extent.CreateTest(TestContext.CurrentContext.Test.Name);
-            if (browser["webBrowser"] == "Chrome") { GetChromeDriver(); }
-            else if (browser["webBrowser"] == "Firefox") { GetFirefoxDriver(); }
-            else if (browser["webBrowser"] == "MSEdge") { GetEdgeDriver(); }
+            GetWebDriver();
             driver.Manage().Cookies.DeleteAllCookies();
             driver.Manage().Window.Size = new Size(1920, 1080);
             driver.Navigate().GoToUrl(googleSite["base_url"].ToString());
         }
 
         [TearDown]
-        public void RunAfterEachMethod()
+        public void RunAfterEachTest()
         {
             string description = TestContext.CurrentContext.Test.Properties.Get("Description").ToString();
-
             switch (TestContext.CurrentContext.Result.Outcome.Status)
             {
                 case TestStatus.Failed:
                     test.Log(Status.Fail, TestContext.CurrentContext.Result.StackTrace);
                     test.Log(Status.Fail, TestContext.CurrentContext.Result.Message);
-                    test.Log(Status.Fail, description, GetScreenshot());
+                    test.Log(Status.Fail, description, GetErrorScreenshot());
                     break;
                 case TestStatus.Passed:
                     test.Log(Status.Pass, description);
+                    break;
+                case TestStatus.Skipped:
+                    test.Log(Status.Skip, description);
                     break;
                 default:
                     test.Log(Status.Info, description);
                     break;
             }
-
             extent.Flush();
-            //This error appears if I quit the webDriver here:
-            //System.ObjectDisposedException : Cannot access a disposed object.
-            //Object name: 'System.Net.Http.HttpClient'.
-            //driver?.Quit();
+            driver.Quit();
         }
 
         [OneTimeTearDown]
-        public void OneTimeTearDown()
+        public void RunAfterSuite()
         {
             extent.Flush();
-            driver?.Quit();
+            driver.Quit();
         }
     }
 }

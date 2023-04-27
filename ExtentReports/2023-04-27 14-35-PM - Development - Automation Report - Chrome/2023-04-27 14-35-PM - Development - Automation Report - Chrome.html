@@ -3,7 +3,7 @@
 <html>
 
     <head>
-    <meta charset='utf-8' />
+    <meta charset='UTF-8' />
     <meta name='description' content='' />
     <meta name='robots' content='noodp, noydir' />
     <meta name='viewport' content='width=device-width, initial-scale=1' />
@@ -12,7 +12,7 @@
     <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
     <link href='https://cdn.rawgit.com/anshooarora/extentreports-csharp/313d8cbbfec09b22592339f03a2ad0ecfadf17f6/dist/css/extent.css' type='text/css' rel='stylesheet' />
 
-    <title>ExtentReports</title>
+    <title>Extent</title>
 
 </head>
     
@@ -35,7 +35,7 @@
         </ul>
 
         <!-- report name -->
-        <span class='report-name'>ExtentReports</span>
+        <span class='report-name'>Automation Report</span>
 
         <!-- report headline -->
         <span class='report-headline'></span>
@@ -43,7 +43,7 @@
         <!-- nav-right -->
         <ul id='nav-mobile' class='right hide-on-med-and-down nav-right'>
             <a>
-                <span class='suite-start-time'>3/21/2023 9:36:46 AM</span>
+                <span class='suite-start-time'>4/27/2023 2:35:30 PM</span>
             </a>
             <a>
                 <span>v3.0.0</span>
@@ -123,7 +123,7 @@
                     <canvas id='parent-analysis' width='100' height='80'></canvas>
                 </div>
                 <div class='block text-small'>
-                    <span><span class='strong'>3</span> test(s) passed</span>
+                    <span><span class='strong'>5</span> test(s) passed</span>
                 </div>
                 <div class='block text-small'>
                     <span class='strong'>1</span> test(s) failed, <span class='strong'>0</span> others
@@ -138,7 +138,7 @@
                     <canvas id='child-analysis' width='100' height='80'></canvas>
                 </div>
                 <div class='block text-small'>
-                    <span><span class='strong'>7</span> step(s) passed</span>
+                    <span><span class='strong'>11</span> step(s) passed</span>
                 </div>
                 <div class='block text-small'>
                     <span class='strong'>3</span> step(s) failed, <span class='strong'>0</span> others
@@ -157,16 +157,16 @@
             <ul id='test-collection' class='test-collection'>
 
 
-                    <li class='test displayed active  fail' status='fail' test-id='1'>
+                    <li class='test displayed active  pass' status='pass' test-id='1'>
                         <div class='test-heading'>
-                            <span class='test-name'>FailTest1</span>
-                            <span class='test-time'>3/21/2023 9:36:46 AM</span>
-                            <span class='test-status right fail'>Fail</span>
+                            <span class='test-name'>UnitTestA</span>
+                            <span class='test-time'>4/27/2023 2:35:31 PM</span>
+                            <span class='test-status right pass'>Pass</span>
                         </div>
                         <div class='test-content hide'>
                                 <div class='test-time-info'>
-                                    <span class='label start-time'>3/21/2023 9:36:46 AM</span>
-                                    <span class='label end-time'>3/21/2023 9:36:46 AM</span>
+                                    <span class='label start-time'>4/27/2023 2:35:31 PM</span>
+                                    <span class='label end-time'>4/27/2023 2:35:31 PM</span>
                                     <span class='label time-taken grey lighten-1 white-text'>00:00:00</span>
                                 </div>
                                     <div class='test-steps'>
@@ -181,25 +181,13 @@
                                             <tbody>
                                                     <tr class='log' status='pass'>
                                                         <td class='status pass' title='pass' alt='pass'><i class='material-icons'>check_circle</i></td>
-                                                        <td class='timestamp'>3/21/2023 9:36:50 AM</td>
-                                                        <td class='step-details'>Test 2a Log Message.</td>
+                                                        <td class='timestamp'>4/27/2023 2:35:32 PM</td>
+                                                        <td class='step-details'>Unit Test A Passes.</td>
                                                     </tr>
-                                                    <tr class='log' status='fail'>
-                                                        <td class='status fail' title='fail' alt='fail'><i class='material-icons'>cancel</i></td>
-                                                        <td class='timestamp'>3/21/2023 9:36:50 AM</td>
-                                                        <td class='step-details'>at Microsoft.VisualStudio.TestTools.UnitTesting.Assert.ThrowAssertFailed(String assertionName, String message)
-   at Microsoft.VisualStudio.TestTools.UnitTesting.Assert.IsTrue(Boolean condition, String message)
-   at CSharp_Selenium_Test_Automation.TheTests.FailTest1() in C:\VS_Projects\CSharp_Selenium_Test_Automation\RegressionTests\TheTests.cs:line 36</td>
-                                                    </tr>
-                                                    <tr class='log' status='fail'>
-                                                        <td class='status fail' title='fail' alt='fail'><i class='material-icons'>cancel</i></td>
-                                                        <td class='timestamp'>3/21/2023 9:36:50 AM</td>
-                                                        <td class='step-details'>Microsoft.VisualStudio.TestTools.UnitTesting.AssertFailedException : Assert.IsTrue failed. Test 2b Message.</td>
-                                                    </tr>
-                                                    <tr class='log' status='fail'>
-                                                        <td class='status fail' title='fail' alt='fail'><i class='material-icons'>cancel</i></td>
-                                                        <td class='timestamp'>3/21/2023 9:36:50 AM</td>
-                                                        <td class='step-details'>02. This test should fail.<img data-featherlight='Screenshots/FailTest1.png' width='10%' src='' data-src='Screenshots/FailTest1.png'><img data-featherlight='Screenshots/FailTest1.png' width='10%' src='' data-src='Screenshots/FailTest1.png'><img data-featherlight='Screenshots/FailTest1.png' width='10%' src='' data-src='Screenshots/FailTest1.png'><img data-featherlight='Screenshots/FailTest1.png' width='10%' src='' data-src='Screenshots/FailTest1.png'><img data-featherlight='Screenshots/FailTest1.png' width='10%' src='' data-src='Screenshots/FailTest1.png'></td>
+                                                    <tr class='log' status='pass'>
+                                                        <td class='status pass' title='pass' alt='pass'><i class='material-icons'>check_circle</i></td>
+                                                        <td class='timestamp'>4/27/2023 2:35:32 PM</td>
+                                                        <td class='step-details'>01. Unit Test A.</td>
                                                     </tr>
                                             </tbody>
                                         </table>
@@ -209,14 +197,14 @@
                     </li>
                     <li class='test displayed active  pass' status='pass' test-id='2'>
                         <div class='test-heading'>
-                            <span class='test-name'>IsAboutLinkDisplayed</span>
-                            <span class='test-time'>3/21/2023 9:36:53 AM</span>
+                            <span class='test-name'>UnitTestB</span>
+                            <span class='test-time'>4/27/2023 2:35:35 PM</span>
                             <span class='test-status right pass'>Pass</span>
                         </div>
                         <div class='test-content hide'>
                                 <div class='test-time-info'>
-                                    <span class='label start-time'>3/21/2023 9:36:53 AM</span>
-                                    <span class='label end-time'>3/21/2023 9:36:53 AM</span>
+                                    <span class='label start-time'>4/27/2023 2:35:35 PM</span>
+                                    <span class='label end-time'>4/27/2023 2:35:35 PM</span>
                                     <span class='label time-taken grey lighten-1 white-text'>00:00:00</span>
                                 </div>
                                     <div class='test-steps'>
@@ -231,13 +219,13 @@
                                             <tbody>
                                                     <tr class='log' status='pass'>
                                                         <td class='status pass' title='pass' alt='pass'><i class='material-icons'>check_circle</i></td>
-                                                        <td class='timestamp'>3/21/2023 9:36:53 AM</td>
-                                                        <td class='step-details'>This means it passed.</td>
+                                                        <td class='timestamp'>4/27/2023 2:35:36 PM</td>
+                                                        <td class='step-details'>Unit Test B Passes.</td>
                                                     </tr>
                                                     <tr class='log' status='pass'>
                                                         <td class='status pass' title='pass' alt='pass'><i class='material-icons'>check_circle</i></td>
-                                                        <td class='timestamp'>3/21/2023 9:36:53 AM</td>
-                                                        <td class='step-details'>00. Does the Google page do a thing?</td>
+                                                        <td class='timestamp'>4/27/2023 2:35:36 PM</td>
+                                                        <td class='step-details'>01. Unit Test B.</td>
                                                     </tr>
                                             </tbody>
                                         </table>
@@ -245,16 +233,16 @@
 
                         </div>
                     </li>
-                    <li class='test displayed active  pass' status='pass' test-id='3'>
+                    <li class='test displayed active  fail' status='fail' test-id='3'>
                         <div class='test-heading'>
-                            <span class='test-name'>PassTest</span>
-                            <span class='test-time'>3/21/2023 9:36:53 AM</span>
-                            <span class='test-status right pass'>Pass</span>
+                            <span class='test-name'>FailTest1</span>
+                            <span class='test-time'>4/27/2023 2:35:36 PM</span>
+                            <span class='test-status right fail'>Fail</span>
                         </div>
                         <div class='test-content hide'>
                                 <div class='test-time-info'>
-                                    <span class='label start-time'>3/21/2023 9:36:53 AM</span>
-                                    <span class='label end-time'>3/21/2023 9:36:53 AM</span>
+                                    <span class='label start-time'>4/27/2023 2:35:36 PM</span>
+                                    <span class='label end-time'>4/27/2023 2:35:36 PM</span>
                                     <span class='label time-taken grey lighten-1 white-text'>00:00:00</span>
                                 </div>
                                     <div class='test-steps'>
@@ -269,13 +257,25 @@
                                             <tbody>
                                                     <tr class='log' status='pass'>
                                                         <td class='status pass' title='pass' alt='pass'><i class='material-icons'>check_circle</i></td>
-                                                        <td class='timestamp'>3/21/2023 9:36:54 AM</td>
-                                                        <td class='step-details'>Test 1 Log Message.</td>
+                                                        <td class='timestamp'>4/27/2023 2:35:38 PM</td>
+                                                        <td class='step-details'>Test 2a Log Message.</td>
                                                     </tr>
-                                                    <tr class='log' status='pass'>
-                                                        <td class='status pass' title='pass' alt='pass'><i class='material-icons'>check_circle</i></td>
-                                                        <td class='timestamp'>3/21/2023 9:36:54 AM</td>
-                                                        <td class='step-details'>01. This test should pass.</td>
+                                                    <tr class='log' status='fail'>
+                                                        <td class='status fail' title='fail' alt='fail'><i class='material-icons'>cancel</i></td>
+                                                        <td class='timestamp'>4/27/2023 2:35:38 PM</td>
+                                                        <td class='step-details'>at Microsoft.VisualStudio.TestTools.UnitTesting.Assert.ThrowAssertFailed(String assertionName, String message)
+   at Microsoft.VisualStudio.TestTools.UnitTesting.Assert.IsTrue(Boolean condition, String message)
+   at CSharp_Selenium_Test_Automation.TheGoogleTests.FailTest1() in C:\VS_Projects\CSharp_Selenium_Test_Automation\RegressionTests\TheGoogleTests.cs:line 36</td>
+                                                    </tr>
+                                                    <tr class='log' status='fail'>
+                                                        <td class='status fail' title='fail' alt='fail'><i class='material-icons'>cancel</i></td>
+                                                        <td class='timestamp'>4/27/2023 2:35:38 PM</td>
+                                                        <td class='step-details'>Microsoft.VisualStudio.TestTools.UnitTesting.AssertFailedException : Assert.IsTrue failed. Test 2b Message.</td>
+                                                    </tr>
+                                                    <tr class='log' status='fail'>
+                                                        <td class='status fail' title='fail' alt='fail'><i class='material-icons'>cancel</i></td>
+                                                        <td class='timestamp'>4/27/2023 2:35:38 PM</td>
+                                                        <td class='step-details'>02. This test should fail.<img data-featherlight='Screenshots\FailTest1.png' width='10%' src='' data-src='Screenshots\FailTest1.png'><img data-featherlight='Screenshots\FailTest1.png' width='10%' src='' data-src='Screenshots\FailTest1.png'><img data-featherlight='Screenshots\FailTest1.png' width='10%' src='' data-src='Screenshots\FailTest1.png'><img data-featherlight='Screenshots\FailTest1.png' width='10%' src='' data-src='Screenshots\FailTest1.png'><img data-featherlight='Screenshots\FailTest1.png' width='10%' src='' data-src='Screenshots\FailTest1.png'></td>
                                                     </tr>
                                             </tbody>
                                         </table>
@@ -285,14 +285,14 @@
                     </li>
                     <li class='test displayed active  pass' status='pass' test-id='4'>
                         <div class='test-heading'>
-                            <span class='test-name'>PassTestTwo</span>
-                            <span class='test-time'>3/21/2023 9:36:54 AM</span>
+                            <span class='test-name'>IsAboutLinkDisplayed</span>
+                            <span class='test-time'>4/27/2023 2:35:38 PM</span>
                             <span class='test-status right pass'>Pass</span>
                         </div>
                         <div class='test-content hide'>
                                 <div class='test-time-info'>
-                                    <span class='label start-time'>3/21/2023 9:36:54 AM</span>
-                                    <span class='label end-time'>3/21/2023 9:36:54 AM</span>
+                                    <span class='label start-time'>4/27/2023 2:35:38 PM</span>
+                                    <span class='label end-time'>4/27/2023 2:35:38 PM</span>
                                     <span class='label time-taken grey lighten-1 white-text'>00:00:00</span>
                                 </div>
                                     <div class='test-steps'>
@@ -307,12 +307,88 @@
                                             <tbody>
                                                     <tr class='log' status='pass'>
                                                         <td class='status pass' title='pass' alt='pass'><i class='material-icons'>check_circle</i></td>
-                                                        <td class='timestamp'>3/21/2023 9:36:54 AM</td>
+                                                        <td class='timestamp'>4/27/2023 2:35:40 PM</td>
+                                                        <td class='step-details'>This means it passed.</td>
+                                                    </tr>
+                                                    <tr class='log' status='pass'>
+                                                        <td class='status pass' title='pass' alt='pass'><i class='material-icons'>check_circle</i></td>
+                                                        <td class='timestamp'>4/27/2023 2:35:40 PM</td>
+                                                        <td class='step-details'>00. Does the Google page do a thing?</td>
+                                                    </tr>
+                                            </tbody>
+                                        </table>
+                                    </div>
+
+                        </div>
+                    </li>
+                    <li class='test displayed active  pass' status='pass' test-id='5'>
+                        <div class='test-heading'>
+                            <span class='test-name'>PassTest</span>
+                            <span class='test-time'>4/27/2023 2:35:40 PM</span>
+                            <span class='test-status right pass'>Pass</span>
+                        </div>
+                        <div class='test-content hide'>
+                                <div class='test-time-info'>
+                                    <span class='label start-time'>4/27/2023 2:35:40 PM</span>
+                                    <span class='label end-time'>4/27/2023 2:35:40 PM</span>
+                                    <span class='label time-taken grey lighten-1 white-text'>00:00:00</span>
+                                </div>
+                                    <div class='test-steps'>
+                                        <table class='bordered table-results'>
+                                            <thead>
+                                                <tr>
+                                                    <th>Status</th>
+                                                    <th>Timestamp</th>
+                                                    <th>Details</th>
+                                                </tr>
+                                            </thead>
+                                            <tbody>
+                                                    <tr class='log' status='pass'>
+                                                        <td class='status pass' title='pass' alt='pass'><i class='material-icons'>check_circle</i></td>
+                                                        <td class='timestamp'>4/27/2023 2:35:42 PM</td>
+                                                        <td class='step-details'>Test 1 Log Message.</td>
+                                                    </tr>
+                                                    <tr class='log' status='pass'>
+                                                        <td class='status pass' title='pass' alt='pass'><i class='material-icons'>check_circle</i></td>
+                                                        <td class='timestamp'>4/27/2023 2:35:42 PM</td>
+                                                        <td class='step-details'>01. This test should pass.</td>
+                                                    </tr>
+                                            </tbody>
+                                        </table>
+                                    </div>
+
+                        </div>
+                    </li>
+                    <li class='test displayed active  pass' status='pass' test-id='6'>
+                        <div class='test-heading'>
+                            <span class='test-name'>PassTestTwo</span>
+                            <span class='test-time'>4/27/2023 2:35:42 PM</span>
+                            <span class='test-status right pass'>Pass</span>
+                        </div>
+                        <div class='test-content hide'>
+                                <div class='test-time-info'>
+                                    <span class='label start-time'>4/27/2023 2:35:42 PM</span>
+                                    <span class='label end-time'>4/27/2023 2:35:42 PM</span>
+                                    <span class='label time-taken grey lighten-1 white-text'>00:00:00</span>
+                                </div>
+                                    <div class='test-steps'>
+                                        <table class='bordered table-results'>
+                                            <thead>
+                                                <tr>
+                                                    <th>Status</th>
+                                                    <th>Timestamp</th>
+                                                    <th>Details</th>
+                                                </tr>
+                                            </thead>
+                                            <tbody>
+                                                    <tr class='log' status='pass'>
+                                                        <td class='status pass' title='pass' alt='pass'><i class='material-icons'>check_circle</i></td>
+                                                        <td class='timestamp'>4/27/2023 2:35:44 PM</td>
                                                         <td class='step-details'>Test 3 Log Message.</td>
                                                     </tr>
                                                     <tr class='log' status='pass'>
                                                         <td class='status pass' title='pass' alt='pass'><i class='material-icons'>check_circle</i></td>
-                                                        <td class='timestamp'>3/21/2023 9:36:54 AM</td>
+                                                        <td class='timestamp'>4/27/2023 2:35:44 PM</td>
                                                         <td class='step-details'>03. This test should pass.</td>
                                                     </tr>
                                             </tbody>
@@ -395,30 +471,30 @@
         <div class='row'>
             <div class='col s2'>
                 <div class='card-panel r'>
- <span>Tests</span>                     <div class='panel-lead'>4</div>
+ <span>Tests</span>                     <div class='panel-lead'>6</div>
                 </div>
             </div>
             <div class='col s2'>
                 <div class='card-panel r'>
- <span>Steps</span>                     <div class='panel-lead'>10</div>
+ <span>Steps</span>                     <div class='panel-lead'>14</div>
                 </div>
             </div>
             <div class='col s2'>
                 <div class='card-panel r'>
                     Start
-                    <div class='panel-lead'>3/21/2023 9:36:46 AM</div>
+                    <div class='panel-lead'>4/27/2023 2:35:30 PM</div>
                 </div>
             </div>
             <div class='col s2'>
                 <div class='card-panel r'>
                     End
-                    <div class='panel-lead'>3/21/2023 9:36:54 AM</div>
+                    <div class='panel-lead'>4/27/2023 2:35:44 PM</div>
                 </div>
             </div>
             <div class='col s2'>
                 <div class='card-panel r'>
                     Time Taken
-                    <div class='panel-lead'>00:00:08.0430652</div>
+                    <div class='panel-lead'>00:00:13.3554185</div>
                 </div>
             </div>
 
@@ -435,7 +511,7 @@
             <h5>TestRunner Logs</h5>
 
             <div class='card-panel'>
-C:\VS_Projects\CSharp_Selenium_Test_Automation\ExtentReports\2023-03-21 09-36-AM - Automation Report - Chrome\2023-03-21 09-36-AM - Automation Report - Chrome.html            </div>
+C:\VS_Projects\CSharp_Selenium_Test_Automation\ExtentReports\2023-04-27 14-35-PM - Development - Automation Report - Chrome\2023-04-27 14-35-PM - Development - Automation Report - Chrome.html            </div>
         </div>        
     </div>
 <!-- exception view -->
@@ -445,14 +521,14 @@ C:\VS_Projects\CSharp_Selenium_Test_Automation\ExtentReports\2023-03-21 09-36-AM
 
 		<script>
 			var statusGroup = {
-			    passParent: 3,
+			    passParent: 5,
 			    failParent: 1,
 			    fatalParent: 0,
 			    errorParent: 0,
 			    warningParent: 0,
 			    skipParent: 0,
 				
-			    passChild: 7,
+			    passChild: 11,
 			    failChild: 3,
 			    fatalChild: 0,
 			    errorChild: 0,
