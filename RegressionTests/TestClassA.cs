@@ -9,7 +9,7 @@ namespace CS_TAF_v1.RegressionTests
         [Test][Description("01. Unit Test A.")]
         public void UnitTestA()
         {
-            Assert.AreEqual(1, 1);
+            Assert.That(1, Is.EqualTo(1), "Error, these are not equal!");
             test.Log(Status.Pass, "Unit Test A Passes.");
         }
     }

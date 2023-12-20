@@ -7,12 +7,11 @@ Extent Reports 3 - https://www.extentreports.com/docs/versions/3/net/index.html#
 A hot garbage test suite maintained by Calista.Sullivan@gmail.com
 
 Note on Extent Reports:
-I used 3 instead of 4 because it had no dependances and I wanted to keep the framework 'light'
+I used 3 instead of 4+ because it had no dependances and I wanted to keep the framework 'light'
 After 3, it starts requiring a LOT of dependancy libraries.
 
-The report will be output to the ExtentReport folder in the main project, NOT the bin folder.
-I didn't want results to be overridden after each run.
-Will periodically save them elsewhere until I figure out a better option.
+The report will be output to the ExtentReport folder in the main project, *NOT* the bin folder.
+You can output it anywhere you like. I just like it there.
 
 Current Issues:
-Duplicate Screenshots appear in the report if a test fails
+Duplicate Screenshots appear in the report if a test fails.

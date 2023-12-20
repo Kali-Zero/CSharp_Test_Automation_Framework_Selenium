@@ -71,7 +71,7 @@ namespace CS_TestAutomation.Framework.Core
             string screenshotName = TestContext.CurrentContext.Test.Name + ".png";
             string filePath = mainReportFolder + "\\" + ReportTitle() + "\\Screenshots\\";
             Screenshot file = ((ITakesScreenshot)driver).GetScreenshot();
-            file.SaveAsFile(filePath + screenshotName, ScreenshotImageFormat.Png);
+            file.SaveAsFile(filePath + screenshotName);
             var screenshot = MediaEntityBuilder.CreateScreenCaptureFromPath("Screenshots\\" + screenshotName).Build();
             return screenshot;
         }
