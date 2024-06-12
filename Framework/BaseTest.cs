@@ -22,40 +22,40 @@ namespace CS_TestAutomation.Framework.Core
         public static String mainReportFolder = Path.Combine(Directory.GetParent(Directory.GetParent(
             Environment.CurrentDirectory).FullName).FullName, "ExtentReports");
         public String reportFolder = "";
-        public NameValueCollection googleSite = (NameValueCollection)ConfigurationManager.GetSection("googleSite");
-        public NameValueCollection browser = (NameValueCollection)ConfigurationManager.GetSection("browser");
+        public NameValueCollection GoogleTest = (NameValueCollection)ConfigurationManager.GetSection("GoogleTest"); 
         public static String dateTime = DateTime.Now.ToString("yyyy-MM-dd HH-mm-tt");
         public static String extentFolder = @"./../ExtentReports/";
         public static ExtentReports extent = new ExtentReports();
         public static ExtentTest test;
         public static bool OneRunFlag = true;
+        public static int WebDriverWaitTime = 60;  //One Minute Timer
 
         public IWebDriver GetWebDriver()
         {
-            if (browser["webBrowser"] == "Chrome")
+            if (GoogleTest["webBrowser"] == "Chrome")
             {
                 ChromeOptions options = new ChromeOptions();
                 options.AddUserProfilePreference("download.default_directory", reportFolder + "\\TestDownloadFolder");
-                if (browser["isHeadless"] == "True") { options.AddArguments("--headless=new", "--no-sandbox"); }
+                if (GoogleTest["isHeadless"] == "True") { options.AddArguments("--headless=new", "--no-sandbox"); }
                 driver = new ChromeDriver(options);
             }
-            else if (browser["webBrowser"] == "Firefox")
+            else if (GoogleTest["webBrowser"] == "Firefox")
             {
                 FirefoxOptions options = new FirefoxOptions();
-                if (browser["isHeadless"] == "True") { options.AddArguments("--headless"); }
+                if (GoogleTest["isHeadless"] == "True") { options.AddArguments("--headless"); }
                 driver = new FirefoxDriver(options);
             }
-            else if (browser["webBrowser"] == "MSEdge")
+            else if (GoogleTest["webBrowser"] == "MSEdge")
             {
                 EdgeOptions options = new EdgeOptions();
-                if (browser["isHeadless"] == "True") { options.AddArguments("--headless"); }
+                if (GoogleTest["isHeadless"] == "True") { options.AddArguments("--headless"); }
                 driver = new EdgeDriver(options);
             }
             return driver;
         }
 
         private String ReportTitle()
-        { return dateTime + " - " + TestEnvironment() + " - Automation Report - " + browser["webBrowser"]; }
+        { return dateTime + " - " + TestEnvironment() + " - Automation Report - " + GoogleTest["webBrowser"]; }
 
         private String TestEnvironment()
         {
@@ -80,7 +80,7 @@ namespace CS_TestAutomation.Framework.Core
         public void RunBeforeSuite()
         {
             if (OneRunFlag)
-            {   //This method is SUPPOSED to be run ONCE only. (This is my hacky way around NUnits stupid framework.)
+            {   //This method is SUPPOSED to be run ONCE only. (This is a hacky way around NUnits stupid framework.)
                 Directory.CreateDirectory(mainReportFolder);
                 reportFolder = mainReportFolder + "\\" + ReportTitle();
                 Directory.CreateDirectory(reportFolder);
@@ -101,7 +101,7 @@ namespace CS_TestAutomation.Framework.Core
             GetWebDriver();
             driver.Manage().Cookies.DeleteAllCookies();
             driver.Manage().Window.Size = new Size(1920, 1080);
-            driver.Navigate().GoToUrl(googleSite["base_url"].ToString());
+            driver.Navigate().GoToUrl(GoogleTest["base_url"].ToString());
         }
 
         [TearDown]
@@ -133,7 +133,12 @@ namespace CS_TestAutomation.Framework.Core
         public void RunAfterSuite()
         {
             extent.Flush();
-            driver.Quit();
+            if (driver != null)
+            {
+                try { driver.Close(); }
+                catch { }
+                driver.Quit();
+            }
         }
     }
 }
