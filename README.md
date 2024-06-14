@@ -9,11 +9,7 @@
 
 Nuget Package Notes=============================================
 	
-	Do NOT update: Extent Reports (current working version: 3.1.0)
-	Do NOT update: Selenium.WebDriver (current working version: 4.16.2)
-	Do NOT update: Selenium.Support (current working version: 4.16.2)
-
-	Selenium gets periodic updates, but a lot of the time they are unstable
+	Extent Reports (current working version: 3.1.0)
 	Extent Reports gets updates occasionally, but require a LOT of dependencies,
 	     and those dependencies have their own dependancies. In short, it adds
 		 too many variables to the testing suite.
