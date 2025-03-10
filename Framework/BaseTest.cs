@@ -13,6 +13,8 @@ using OpenQA.Selenium;
 using OpenQA.Selenium.Edge;
 using OpenQA.Selenium.Chrome;
 using OpenQA.Selenium.Firefox;
+using NUnit.Framework.Internal;
+
 
 namespace CS_TestAutomation.Framework.Core
 {
@@ -21,49 +23,69 @@ namespace CS_TestAutomation.Framework.Core
         public IWebDriver driver;
         public static String mainReportFolder = Path.Combine(Directory.GetParent(Directory.GetParent(
             Environment.CurrentDirectory).FullName).FullName, "ExtentReports");
-        public String reportFolder = "";
-        public NameValueCollection GoogleTest = (NameValueCollection)ConfigurationManager.GetSection("GoogleTest"); 
+        public static String reportFolder = "";
+        public static NameValueCollection BaseConfig = (NameValueCollection)ConfigurationManager.GetSection("BaseConfig");
+        public static NameValueCollection GoogleTest = (NameValueCollection)ConfigurationManager.GetSection("GoogleTest");
+        public static NameValueCollection EnvConfig;
         public static String dateTime = DateTime.Now.ToString("yyyy-MM-dd HH-mm-tt");
         public static String extentFolder = @"./../ExtentReports/";
         public static ExtentReports extent = new ExtentReports();
         public static ExtentTest test;
         public static bool OneRunFlag = true;
         public static int WebDriverWaitTime = 60;  //One Minute Timer
+        public static string AutoFileType = "";
+
+        public void SetEnvConfig()
+        {  //Overwrites EnvConfig to whatever environment you select
+            if (BaseConfig["testSuite"].Contains("Google")) { EnvConfig = GoogleTest; }
+            //Placeholder!
+            else { EnvConfig = BaseConfig; }
+            //else if (BaseConfig["base_url"].Contains("SomeOtherConfig")) { EnvConfig = SomeOtherConfig; }
+        }
+
+        //Connection Strings: Ignore this. These are for fancy people with databases only, no looky!
+        //This is useful if you want to generate test data from an existing database.
+        //You'll probably have to create some sprocs for it if you want to go that route.
+        //I used it for awhile, but decided that generating test data on the fly was a more flexible approach.
+        //public string MagicDataConnStuff()
+        //{
+        //    string dataConn = @"server=" + EnvConfig["server"] + ";"
+        //                     + "database=" + EnvConfig["database"] + ";"
+                                //Add Crytography for EXTRA fun
+        //                     + "user=" + Cryptography.Decrypt(EnvConfig["CryptoUser"]) + ";"
+        //                     + "password=" + EnvConfig["CryptoPassword"] + ";"
+        //                     + "Application Name=" + EnvConfig["ApplicationName"] + ";"
+        //                     + "Connection Timeout=" + EnvConfig["ConnectionTimeout"] + ";";
+        //    return dataConn;
+        //}
 
         public IWebDriver GetWebDriver()
         {
-            if (GoogleTest["webBrowser"] == "Chrome")
+            if (BaseConfig["webBrowser"] == "Chrome")
             {
                 ChromeOptions options = new ChromeOptions();
                 options.AddUserProfilePreference("download.default_directory", reportFolder + "\\TestDownloadFolder");
-                if (GoogleTest["isHeadless"] == "True") { options.AddArguments("--headless=new", "--no-sandbox"); }
+                if (BaseConfig["isHeadless"] == "True") { options.AddArguments("--headless=new", "--no-sandbox"); }
                 driver = new ChromeDriver(options);
             }
-            else if (GoogleTest["webBrowser"] == "Firefox")
+            else if (BaseConfig["webBrowser"] == "Firefox")
             {
                 FirefoxOptions options = new FirefoxOptions();
-                if (GoogleTest["isHeadless"] == "True") { options.AddArguments("--headless"); }
+                if (BaseConfig["isHeadless"] == "True") { options.AddArguments("--headless"); }
                 driver = new FirefoxDriver(options);
             }
-            else if (GoogleTest["webBrowser"] == "MSEdge")
+            else if (BaseConfig["webBrowser"] == "MSEdge")
             {
                 EdgeOptions options = new EdgeOptions();
-                if (GoogleTest["isHeadless"] == "True") { options.AddArguments("--headless"); }
+                if (BaseConfig["isHeadless"] == "True") { options.AddArguments("--headless"); }
                 driver = new EdgeDriver(options);
             }
             return driver;
         }
 
         private String ReportTitle()
-        { return dateTime + " - " + TestEnvironment() + " - Automation Report - " + GoogleTest["webBrowser"]; }
-
-        private String TestEnvironment()
         {
-            String env = "Development";
-            //if (     env["base_url"].Contains(env["dev"]))     { env = "Development"; }
-            //else if (env["base_url"].Contains(env["staging"])) { env = "Staging"; }
-            //else if (env["base_url"].Contains(env["prod"]))    { env = "Production"; }
-            return env;
+            return dateTime + " - " + EnvConfig["env"] + " - Automation Report - " + EnvConfig["webBrowser"];
         }
 
         public MediaEntityModelProvider GetErrorScreenshot()
@@ -79,12 +101,14 @@ namespace CS_TestAutomation.Framework.Core
         [OneTimeSetUp]
         public void RunBeforeSuite()
         {
+            SetEnvConfig();
             if (OneRunFlag)
             {   //This method is SUPPOSED to be run ONCE only. (This is a hacky way around NUnits stupid framework.)
                 Directory.CreateDirectory(mainReportFolder);
                 reportFolder = mainReportFolder + "\\" + ReportTitle();
                 Directory.CreateDirectory(reportFolder);
                 Directory.CreateDirectory(reportFolder + "\\Screenshots");
+                Directory.CreateDirectory(reportFolder + "\\AutoGeneratedFiles");
                 String reportFile = reportFolder + "\\" + ReportTitle() + ".html";
                 ExtentHtmlReporter htmlReporter = new ExtentHtmlReporter(reportFile);
                 htmlReporter.LoadConfig(Environment.CurrentDirectory + "\\Framework\\extent-config.xml");
@@ -101,7 +125,7 @@ namespace CS_TestAutomation.Framework.Core
             GetWebDriver();
             driver.Manage().Cookies.DeleteAllCookies();
             driver.Manage().Window.Size = new Size(1920, 1080);
-            driver.Navigate().GoToUrl(GoogleTest["base_url"].ToString());
+            driver.Navigate().GoToUrl(BaseConfig["base_url"].ToString());
         }
 
         [TearDown]

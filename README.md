@@ -17,4 +17,4 @@ Nuget Package Notes=============================================
 Extent Reports==================================================
 
 	The report will be output to the ExtentReport folder in the main project, NOT the bin folder.
-	I find it's easier to organize the reports this way.
+	I know it's an arbitrary place to put it, but I find it's easier to organize the reports this way.

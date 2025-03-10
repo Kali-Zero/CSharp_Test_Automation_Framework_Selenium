@@ -1,4 +1,4 @@
-﻿using CSharp_Selenium_Test_Automation.PageObjects;
+﻿using CS_TestAutomation.PageObjects;
 using CS_TestAutomation.Framework.Core;
 using AventStack.ExtentReports;
 using NUnit.Framework;
@@ -7,7 +7,7 @@ using OpenQA.Selenium.Support.UI;
 using System;
 using SeleniumExtras.WaitHelpers;
 
-namespace CSharp_Selenium_Test_Automation
+namespace CS_TestAutomation.RegressionTests
 {
     [TestFixture, Order(1)]
     public class TheGoogleTests : BaseTest
@@ -38,6 +38,7 @@ namespace CSharp_Selenium_Test_Automation
             test.Log(Status.Pass, "'Store' URL is correct.");
         }
 
+        //This might fail. They updated the page.
         [Test, Order(3)][Description("Test 3: Does the 'Gmail' link bring the user to the 'Gmail' page?")]
         public void DoesGmailLinkWork()
         {
@@ -80,6 +81,10 @@ namespace CSharp_Selenium_Test_Automation
             test.Log(Status.Pass, "This should not appear in report because it failed.");
         }
 
+        //Seems Google added a little "Sign into Google" bubble below the sign-in button
+        //that breaks this test sometimes... but WHY?! There's already a sign-in button on the screen!
+        //Why do you need TWO of them?! I could fix this with a little "if" statement that checks for it,
+        //but since I think it's stupid, I will not. :-P
         [Test, Order(6)][Description("Test 6: Does the 'Sign In' button bring the user to the 'Sign In' page?")]
         public void DoesSignInButtonWork()
         {

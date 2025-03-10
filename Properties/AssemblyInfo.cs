@@ -2,12 +2,12 @@ using System.Reflection;
 using System.Runtime.CompilerServices;
 using System.Runtime.InteropServices;
 
-[assembly: AssemblyTitle("CS_TAF_v1")]
-[assembly: AssemblyDescription("")]
+[assembly: AssemblyTitle("CS_TestAutomation")]
+[assembly: AssemblyDescription("A hot garbage automation suite by Calista Sullivan")]
 [assembly: AssemblyConfiguration("")]
 [assembly: AssemblyCompany("AtomicBioLabs")]
-[assembly: AssemblyProduct("CS_TAF_v1")]
-[assembly: AssemblyCopyright("Copyright Calista Sullivan © 2023")]
+[assembly: AssemblyProduct("CS_TestAutomation")]
+[assembly: AssemblyCopyright("Copyright (Not really) Calista Sullivan ©2025")]
 [assembly: AssemblyTrademark("")]
 [assembly: AssemblyCulture("")]
 
