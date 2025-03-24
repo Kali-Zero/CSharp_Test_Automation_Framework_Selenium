@@ -18,7 +18,7 @@ namespace CS_TestAutomation.RegressionTests
         public void DoesTheAboutLinkWork()
         {
             WebDriverWait wait = new WebDriverWait(driver, TimeSpan.FromSeconds(WebDriverWaitTime));
-            Assert.That(googlePageObjects.About(driver).Displayed);
+            Assert.That(googlePageObjects.About(driver).Displayed, "'About' link is NOT displayed!");
             test.Log(Status.Pass, "'About' link is displayed.");
             wait.Until(ExpectedConditions.ElementToBeClickable(googlePageObjects.About(driver))).Click();
             wait.Until(ExpectedConditions.UrlContains(GoogleTest["about_url"]));
@@ -30,7 +30,7 @@ namespace CS_TestAutomation.RegressionTests
         public void DoesStoreLinkWork()
         {
             WebDriverWait wait = new WebDriverWait(driver, TimeSpan.FromSeconds(WebDriverWaitTime));
-            Assert.That(googlePageObjects.Store(driver).Displayed);
+            Assert.That(googlePageObjects.Store(driver).Displayed, "'Store' link is NOT displayed!");
             test.Log(Status.Pass, "'Store' link is displayed.");
             wait.Until(ExpectedConditions.ElementToBeClickable(googlePageObjects.Store(driver))).Click();
             wait.Until(ExpectedConditions.UrlContains(GoogleTest["store_url"]));
@@ -43,7 +43,7 @@ namespace CS_TestAutomation.RegressionTests
         public void DoesGmailLinkWork()
         {
             WebDriverWait wait = new WebDriverWait(driver, TimeSpan.FromSeconds(WebDriverWaitTime));
-            Assert.That(googlePageObjects.Gmail(driver).Displayed);
+            Assert.That(googlePageObjects.Gmail(driver).Displayed, "'Gmail' link is NOT displayed.");
             test.Log(Status.Pass, "'Gmail' link is displayed.");
             wait.Until(ExpectedConditions.ElementToBeClickable(googlePageObjects.Gmail(driver))).Click();
             try { wait.Until(ExpectedConditions.UrlContains(GoogleTest["logged_in_gmail_url"])); }
@@ -60,7 +60,7 @@ namespace CS_TestAutomation.RegressionTests
         public void DoesImagesLinkWork()
         {
             WebDriverWait wait = new WebDriverWait(driver, TimeSpan.FromSeconds(WebDriverWaitTime));
-            Assert.That(googlePageObjects.Images(driver).Displayed);
+            Assert.That(googlePageObjects.Images(driver).Displayed, "'Images' link is NOT displayed.");
             test.Log(Status.Pass, "'Images' link is displayed.");
             wait.Until(ExpectedConditions.ElementToBeClickable(googlePageObjects.Images(driver))).Click();
             Assert.That(driver.Url.Contains(GoogleTest["images_url"]), "'Images' URL is incorrect!");
@@ -73,11 +73,11 @@ namespace CS_TestAutomation.RegressionTests
         public void DoesAppsLinkWork()
         {
             WebDriverWait wait = new WebDriverWait(driver, TimeSpan.FromSeconds(WebDriverWaitTime));
-            Assert.That(googlePageObjects.Apps(driver).Displayed);
+            Assert.That(googlePageObjects.Apps(driver).Displayed, "'Apps' link is NOT displayed.");
             test.Log(Status.Pass, "'Apps' link is displayed.");
             wait.Until(ExpectedConditions.ElementToBeClickable(googlePageObjects.Apps(driver))).Click();
             driver.SwitchTo().ActiveElement();
-            Assert.That(googlePageObjects.AppsAccount(driver).Displayed);
+            Assert.That(googlePageObjects.AppsAccount(driver).Displayed, "I put an intentional fail here. You're welcome.");
             test.Log(Status.Pass, "This should not appear in report because it failed.");
         }
 
@@ -89,7 +89,7 @@ namespace CS_TestAutomation.RegressionTests
         public void DoesSignInButtonWork()
         {
             WebDriverWait wait = new WebDriverWait(driver, TimeSpan.FromSeconds(WebDriverWaitTime));
-            Assert.That(googlePageObjects.SignIn(driver).Displayed);
+            Assert.That(googlePageObjects.SignIn(driver).Displayed, "'Sign In Button' link is NOT displayed.");
             test.Log(Status.Pass, "'Sign In Button' link is displayed.");
             wait.Until(ExpectedConditions.ElementToBeClickable(googlePageObjects.SignIn(driver))).Click();
             Assert.That(driver.Url.Contains(GoogleTest["account_url"]), "'Account' URL is incorrect!");
