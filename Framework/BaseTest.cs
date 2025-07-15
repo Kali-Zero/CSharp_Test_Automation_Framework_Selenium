@@ -10,7 +10,6 @@ using NUnit.Framework;
 using NUnit.Framework.Interfaces;
 using TestContext = NUnit.Framework.TestContext;
 using OpenQA.Selenium;
-using OpenQA.Selenium.Edge;
 using OpenQA.Selenium.Chrome;
 using OpenQA.Selenium.Firefox;
 using NUnit.Framework.Internal;
@@ -74,12 +73,12 @@ namespace CS_TestAutomation.Framework.Core
                 if (BaseConfig["isHeadless"] == "True") { options.AddArguments("--headless"); }
                 driver = new FirefoxDriver(options);
             }
-            else if (BaseConfig["webBrowser"] == "MSEdge")
-            {
-                EdgeOptions options = new EdgeOptions();
-                if (BaseConfig["isHeadless"] == "True") { options.AddArguments("--headless"); }
-                driver = new EdgeDriver(options);
-            }
+            //else if (BaseConfig["webBrowser"] == "MSEdge")
+            //{
+            //    EdgeOptions options = new EdgeOptions();
+            //    if (BaseConfig["isHeadless"] == "True") { options.AddArguments("--headless"); }
+            //    driver = new EdgeDriver(options);
+            //}
             return driver;
         }
 

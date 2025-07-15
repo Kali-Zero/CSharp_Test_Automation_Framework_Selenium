@@ -55,9 +55,6 @@
     <Reference Include="ExtentReports, Version=3.0.2.1, Culture=neutral, processorArchitecture=MSIL">
       <HintPath>packages\ExtentReports.3.1.0\lib\ExtentReports.dll</HintPath>
     </Reference>
-    <Reference Include="Microsoft.Bcl.AsyncInterfaces, Version=9.0.0.3, Culture=neutral, PublicKeyToken=cc7b13ffcd2ddd51, processorArchitecture=MSIL">
-      <HintPath>packages\Microsoft.Bcl.AsyncInterfaces.9.0.3\lib\net462\Microsoft.Bcl.AsyncInterfaces.dll</HintPath>
-    </Reference>
     <Reference Include="Microsoft.CSharp" />
     <Reference Include="Microsoft.Testing.Extensions.MSBuild, Version=1.6.2.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
       <HintPath>packages\Microsoft.Testing.Platform.MSBuild.1.6.2\lib\netstandard2.0\Microsoft.Testing.Extensions.MSBuild.dll</HintPath>
@@ -87,18 +84,12 @@
       <HintPath>packages\DotNetSeleniumExtras.WaitHelpers.3.11.0\lib\net45\SeleniumExtras.WaitHelpers.dll</HintPath>
     </Reference>
     <Reference Include="System" />
-    <Reference Include="System.Buffers, Version=4.0.5.0, Culture=neutral, PublicKeyToken=cc7b13ffcd2ddd51, processorArchitecture=MSIL">
-      <HintPath>packages\System.Buffers.4.6.1\lib\net462\System.Buffers.dll</HintPath>
-    </Reference>
     <Reference Include="System.ComponentModel.Composition" />
     <Reference Include="System.ComponentModel.DataAnnotations" />
     <Reference Include="System.Configuration" />
     <Reference Include="System.Core" />
     <Reference Include="System.Data" />
     <Reference Include="System.Drawing" />
-    <Reference Include="System.Drawing.Common, Version=9.0.0.0, Culture=neutral, PublicKeyToken=cc7b13ffcd2ddd51, processorArchitecture=MSIL">
-      <HintPath>packages\System.Drawing.Common.9.0.3\lib\net462\System.Drawing.Common.dll</HintPath>
-    </Reference>
     <Reference Include="System.IO.Compression, Version=4.1.2.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
       <HintPath>packages\System.IO.Compression.4.3.0\lib\net46\System.IO.Compression.dll</HintPath>
       <Private>True</Private>
@@ -110,33 +101,15 @@
       <Private>True</Private>
       <Private>True</Private>
     </Reference>
-    <Reference Include="System.IO.Pipelines, Version=9.0.0.3, Culture=neutral, PublicKeyToken=cc7b13ffcd2ddd51, processorArchitecture=MSIL">
-      <HintPath>packages\System.IO.Pipelines.9.0.3\lib\net462\System.IO.Pipelines.dll</HintPath>
-    </Reference>
-    <Reference Include="System.Memory, Version=4.0.4.0, Culture=neutral, PublicKeyToken=cc7b13ffcd2ddd51, processorArchitecture=MSIL">
-      <HintPath>packages\System.Memory.4.6.2\lib\net462\System.Memory.dll</HintPath>
-    </Reference>
     <Reference Include="System.Net" />
     <Reference Include="System.Net.Http" />
     <Reference Include="System.Numerics" />
-    <Reference Include="System.Numerics.Vectors, Version=4.1.6.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
-      <HintPath>packages\System.Numerics.Vectors.4.6.1\lib\net462\System.Numerics.Vectors.dll</HintPath>
-    </Reference>
     <Reference Include="System.Runtime" />
-    <Reference Include="System.Runtime.CompilerServices.Unsafe, Version=6.0.2.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
-      <HintPath>packages\System.Runtime.CompilerServices.Unsafe.6.1.1\lib\net462\System.Runtime.CompilerServices.Unsafe.dll</HintPath>
-    </Reference>
     <Reference Include="System.Runtime.Serialization" />
     <Reference Include="System.ServiceModel" />
     <Reference Include="System.ServiceProcess" />
-    <Reference Include="System.Text.Encodings.Web, Version=9.0.0.3, Culture=neutral, PublicKeyToken=cc7b13ffcd2ddd51, processorArchitecture=MSIL">
-      <HintPath>packages\System.Text.Encodings.Web.9.0.3\lib\net462\System.Text.Encodings.Web.dll</HintPath>
-    </Reference>
-    <Reference Include="System.Text.Json, Version=9.0.0.3, Culture=neutral, PublicKeyToken=cc7b13ffcd2ddd51, processorArchitecture=MSIL">
-      <HintPath>packages\System.Text.Json.9.0.3\lib\net462\System.Text.Json.dll</HintPath>
-    </Reference>
-    <Reference Include="System.Threading.Tasks.Extensions, Version=4.2.3.0, Culture=neutral, PublicKeyToken=cc7b13ffcd2ddd51, processorArchitecture=MSIL">
-      <HintPath>packages\System.Threading.Tasks.Extensions.4.6.2\lib\net462\System.Threading.Tasks.Extensions.dll</HintPath>
+    <Reference Include="System.Text.Json, Version=8.0.0.0, Culture=neutral, PublicKeyToken=cc7b13ffcd2ddd51, processorArchitecture=MSIL">
+      <HintPath>packages\System.Text.Json.8.0.0\lib\net462\System.Text.Json.dll</HintPath>
     </Reference>
     <Reference Include="System.Transactions" />
     <Reference Include="System.Windows" />
@@ -144,10 +117,10 @@
     <Reference Include="System.Xml" />
     <Reference Include="System.Xml.Linq" />
     <Reference Include="WebDriver, Version=4.0.0.0, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>packages\Selenium.WebDriver.4.30.0\lib\netstandard2.0\WebDriver.dll</HintPath>
+      <HintPath>packages\Selenium.WebDriver.4.23.0\lib\netstandard2.0\WebDriver.dll</HintPath>
     </Reference>
     <Reference Include="WebDriver.Support, Version=4.0.0.0, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>packages\Selenium.Support.4.30.0\lib\netstandard2.0\WebDriver.Support.dll</HintPath>
+      <HintPath>packages\Selenium.Support.4.23.0\lib\netstandard2.0\WebDriver.Support.dll</HintPath>
     </Reference>
     <Reference Include="WindowsBase" />
   </ItemGroup>
@@ -160,6 +133,7 @@
       <DesignTimeSharedInput>True</DesignTimeSharedInput>
       <DependentUpon>Settings.settings</DependentUpon>
     </Compile>
+    <Compile Include="RegressionTests\AppiumTests.cs" />
     <Compile Include="RegressionTests\FileGenerationTests.cs" />
     <Compile Include="RegressionTests\TheGoogleTests.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -202,17 +176,13 @@
     <Error Condition="!Exists('packages\Microsoft.Testing.Platform.MSBuild.1.6.2\build\Microsoft.Testing.Platform.MSBuild.props')" Text="$([System.String]::Format('$(ErrorText)', 'packages\Microsoft.Testing.Platform.MSBuild.1.6.2\build\Microsoft.Testing.Platform.MSBuild.props'))" />
     <Error Condition="!Exists('packages\Microsoft.Testing.Platform.MSBuild.1.6.2\build\Microsoft.Testing.Platform.MSBuild.targets')" Text="$([System.String]::Format('$(ErrorText)', 'packages\Microsoft.Testing.Platform.MSBuild.1.6.2\build\Microsoft.Testing.Platform.MSBuild.targets'))" />
     <Error Condition="!Exists('packages\Selenium.WebDriver.4.21.0\build\Selenium.WebDriver.targets')" Text="$([System.String]::Format('$(ErrorText)', 'packages\Selenium.WebDriver.4.21.0\build\Selenium.WebDriver.targets'))" />
-    <Error Condition="!Exists('packages\Selenium.WebDriver.ChromeDriver.134.0.6998.16500\build\Selenium.WebDriver.ChromeDriver.targets')" Text="$([System.String]::Format('$(ErrorText)', 'packages\Selenium.WebDriver.ChromeDriver.134.0.6998.16500\build\Selenium.WebDriver.ChromeDriver.targets'))" />
-    <Error Condition="!Exists('packages\Selenium.WebDriver.MSEdgeDriver.134.0.3124.72\build\Selenium.WebDriver.MSEdgeDriver.targets')" Text="$([System.String]::Format('$(ErrorText)', 'packages\Selenium.WebDriver.MSEdgeDriver.134.0.3124.72\build\Selenium.WebDriver.MSEdgeDriver.targets'))" />
-    <Error Condition="!Exists('packages\System.ValueTuple.4.6.1\build\net471\System.ValueTuple.targets')" Text="$([System.String]::Format('$(ErrorText)', 'packages\System.ValueTuple.4.6.1\build\net471\System.ValueTuple.targets'))" />
-    <Error Condition="!Exists('packages\Selenium.WebDriver.4.30.0\build\Selenium.WebDriver.targets')" Text="$([System.String]::Format('$(ErrorText)', 'packages\Selenium.WebDriver.4.30.0\build\Selenium.WebDriver.targets'))" />
+    <Error Condition="!Exists('packages\Selenium.WebDriver.ChromeDriver.138.0.7204.9400\build\Selenium.WebDriver.ChromeDriver.targets')" Text="$([System.String]::Format('$(ErrorText)', 'packages\Selenium.WebDriver.ChromeDriver.138.0.7204.9400\build\Selenium.WebDriver.ChromeDriver.targets'))" />
+    <Error Condition="!Exists('packages\Selenium.WebDriver.4.23.0\build\Selenium.WebDriver.targets')" Text="$([System.String]::Format('$(ErrorText)', 'packages\Selenium.WebDriver.4.23.0\build\Selenium.WebDriver.targets'))" />
   </Target>
   <Import Project="packages\Selenium.WebDriver.GeckoDriver.0.36.0\build\Selenium.WebDriver.GeckoDriver.targets" Condition="Exists('packages\Selenium.WebDriver.GeckoDriver.0.36.0\build\Selenium.WebDriver.GeckoDriver.targets')" />
   <Import Project="packages\NUnit3TestAdapter.5.0.0\build\net462\NUnit3TestAdapter.targets" Condition="Exists('packages\NUnit3TestAdapter.5.0.0\build\net462\NUnit3TestAdapter.targets')" />
   <Import Project="packages\Microsoft.Testing.Platform.MSBuild.1.6.2\build\Microsoft.Testing.Platform.MSBuild.targets" Condition="Exists('packages\Microsoft.Testing.Platform.MSBuild.1.6.2\build\Microsoft.Testing.Platform.MSBuild.targets')" />
   <Import Project="packages\Selenium.WebDriver.4.21.0\build\Selenium.WebDriver.targets" Condition="Exists('packages\Selenium.WebDriver.4.21.0\build\Selenium.WebDriver.targets')" />
-  <Import Project="packages\Selenium.WebDriver.ChromeDriver.134.0.6998.16500\build\Selenium.WebDriver.ChromeDriver.targets" Condition="Exists('packages\Selenium.WebDriver.ChromeDriver.134.0.6998.16500\build\Selenium.WebDriver.ChromeDriver.targets')" />
-  <Import Project="packages\Selenium.WebDriver.MSEdgeDriver.134.0.3124.72\build\Selenium.WebDriver.MSEdgeDriver.targets" Condition="Exists('packages\Selenium.WebDriver.MSEdgeDriver.134.0.3124.72\build\Selenium.WebDriver.MSEdgeDriver.targets')" />
-  <Import Project="packages\System.ValueTuple.4.6.1\build\net471\System.ValueTuple.targets" Condition="Exists('packages\System.ValueTuple.4.6.1\build\net471\System.ValueTuple.targets')" />
-  <Import Project="packages\Selenium.WebDriver.4.30.0\build\Selenium.WebDriver.targets" Condition="Exists('packages\Selenium.WebDriver.4.30.0\build\Selenium.WebDriver.targets')" />
+  <Import Project="packages\Selenium.WebDriver.ChromeDriver.138.0.7204.9400\build\Selenium.WebDriver.ChromeDriver.targets" Condition="Exists('packages\Selenium.WebDriver.ChromeDriver.138.0.7204.9400\build\Selenium.WebDriver.ChromeDriver.targets')" />
+  <Import Project="packages\Selenium.WebDriver.4.23.0\build\Selenium.WebDriver.targets" Condition="Exists('packages\Selenium.WebDriver.4.23.0\build\Selenium.WebDriver.targets')" />
 </Project>
